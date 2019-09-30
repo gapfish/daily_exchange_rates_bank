@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 2.6
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/IndentFirstHashElement:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Metrics/BlockLength:
+  Exclude:
+    - !ruby/regexp /_spec\.rb$/
