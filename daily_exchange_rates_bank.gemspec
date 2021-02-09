@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files         = Dir.glob('lib/**/*') + %w[CHANGELOG.md LICENSE README.md]
   s.require_path  = 'lib'
 
-  s.add_dependency 'money', '~> 6.13'
+  s.add_dependency 'money', '>= 6.14.0'
 
   s.add_development_dependency 'pry-byebug', '~> 3.7'
   s.add_development_dependency 'rspec', '~> 3.8'
