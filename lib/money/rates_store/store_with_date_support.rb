@@ -9,14 +9,14 @@ class Money
       INDEX_DATE_SEPARATOR = '_ON_'
 
       def add_rate(currency_iso_from, currency_iso_to, rate, date = nil)
-        @guard.synchronize do
-          @rates[rate_key_for(currency_iso_from, currency_iso_to, date)] = rate
+        guard.synchronize do
+          rates[rate_key_for(currency_iso_from, currency_iso_to, date)] = rate
         end
       end
 
       def get_rate(currency_iso_from, currency_iso_to, date = nil)
-        @guard.synchronize do
-          @rates[rate_key_for(currency_iso_from, currency_iso_to, date)]
+        guard.synchronize do
+          rates[rate_key_for(currency_iso_from, currency_iso_to, date)]
         end
       end
 
@@ -35,8 +35,8 @@ class Money
       def each_rate(&_block)
         return to_enum(:each_rate) unless block_given?
 
-        @guard.synchronize do
-          @rates.each do |key, rate|
+        guard.synchronize do
+          rates.each do |key, rate|
             iso_from, iso_to = key.split(INDEX_KEY_SEPARATOR)
             iso_to, date = iso_to.split(INDEX_DATE_SEPARATOR)
             date = Date.parse(date) if date
