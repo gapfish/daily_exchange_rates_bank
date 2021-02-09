@@ -9,14 +9,14 @@ class Money
       INDEX_DATE_SEPARATOR = '_ON_'
 
       def add_rate(currency_iso_from, currency_iso_to, rate, date = nil)
-        transaction do
-          index[rate_key_for(currency_iso_from, currency_iso_to, date)] = rate
+        @guard.synchronize do
+          @rates[rate_key_for(currency_iso_from, currency_iso_to, date)] = rate
         end
       end
 
       def get_rate(currency_iso_from, currency_iso_to, date = nil)
-        transaction do
-          index[rate_key_for(currency_iso_from, currency_iso_to, date)]
+        @guard.synchronize do
+          @rates[rate_key_for(currency_iso_from, currency_iso_to, date)]
         end
       end
 
@@ -32,17 +32,17 @@ class Money
       #   store.each_rate do |iso_from, iso_to, rate, date|
       #     puts [iso_from, iso_to, rate, date].join
       #   end
-      def each_rate(&block)
-        enum = Enumerator.new do |yielder|
-          index.each do |key, rate|
-            iso_from, iso_to = key.split(Memory::INDEX_KEY_SEPARATOR)
+      def each_rate(&_block)
+        return to_enum(:each_rate) unless block_given?
+
+        @guard.synchronize do
+          @rates.each do |key, rate|
+            iso_from, iso_to = key.split(INDEX_KEY_SEPARATOR)
             iso_to, date = iso_to.split(INDEX_DATE_SEPARATOR)
             date = Date.parse(date) if date
-            yielder.yield iso_from, iso_to, rate, date
+            yield iso_from, iso_to, rate, date
           end
         end
-
-        block_given? ? enum.each(&block) : enum
       end
 
       private
