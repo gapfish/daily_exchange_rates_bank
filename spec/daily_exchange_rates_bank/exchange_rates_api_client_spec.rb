@@ -13,7 +13,7 @@ RSpec.describe DailyExchangeRatesBank::ExchangeRatesApiClient do
         'base' => 'EUR',
         'date' => '2019-09-11'
       }.to_json
-      stub_request(:get, "https://api.exchangeratesapi.io/#{Date.today}/").
+      stub_request(:get, "https://api.frankfurter.app/#{Date.today}/").
         with(query: 'base=EUR&symbols=USD,GBP,CHF').
         to_return(status: 200, body: json_response)
 
