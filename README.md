@@ -3,7 +3,8 @@
 [![Codeship Status for gapfish/daily_exchange_rates_bank](https://app.codeship.com/projects/4d5d2f00-c367-0137-d12d-621d2c7e26d1/status?branch=master)](https://app.codeship.com/projects/366592)
 
 A bank for the money gem that determines exchange rates for any desired date.
-Missing exchange rates are fetched from exchangeratesapi.io
+Missing exchange rates are fetched from api.frankfurter.app. This is
+configurable with the `RATES_API_URL` environment variable.
 
 ## Installation
 

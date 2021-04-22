@@ -3,10 +3,11 @@
 require 'open-uri'
 
 class DailyExchangeRatesBank < Money::Bank::VariableExchange
-  # Access exchangeratesapi.io to fetch historic exchange rates
+  # Access api.frankfurter.app to fetch historic exchange rates
   class ExchangeRatesApiClient
     def exchange_rates(from: 'EUR', to: %w[USD GBP CHF], date: Date.today)
-      uri = URI.parse('https://api.exchangeratesapi.io/')
+      api_url = ENV.fetch('RATES_API_URL', 'https://api.frankfurter.app/')
+      uri = URI.parse(api_url)
       uri.path = "/#{date}/"
       uri.query = "base=#{from}&symbols=#{to.join(',')}"
       json_response = uri.read

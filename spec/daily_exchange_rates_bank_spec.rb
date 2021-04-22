@@ -118,7 +118,7 @@ RSpec.describe DailyExchangeRatesBank do
         instance_double(DailyExchangeRatesBank::ExchangeRatesApiClient)
       end
 
-      it 'fetches exchange rate from exchangeratesapi.io and stores it' do
+      it 'fetches exchange rate from api.frankfurter.app and stores it' do
         date = Date.new(2019, 9, 21)
         expect(DailyExchangeRatesBank::ExchangeRatesApiClient).to receive(:new).
           and_return(api_client)

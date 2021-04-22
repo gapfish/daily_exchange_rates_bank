@@ -3,13 +3,12 @@
 Gem::Specification.new do |s|
   s.name          = 'daily_exchange_rates_bank'
   s.license       = 'GPL-3.0'
-  s.version       = '1.0.1'
-  s.date          = '2019-09-20'
+  s.version       = '1.0.2'
   s.summary       = 'A bank for the money gem that determines exchange rates '\
     'for any desired date.'
   s.description   = 'This gem supports money conversions with '\
     'historic exchange rates. ' \
-    'Missing exchange rates are fetched from exchangeratesapi.io'
+    'Missing exchange rates are fetched from api.frankfurter.app'
   s.homepage      = 'https://github.com/gapfish/daily_exchange_rates_bank'
   s.authors       = ['Robert Aschenbrenner']
   s.files         = Dir.glob('lib/**/*') + %w[CHANGELOG.md LICENSE README.md]
