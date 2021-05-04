@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.name          = 'daily_exchange_rates_bank'
   s.license       = 'GPL-3.0'
-  s.version       = '1.0.2'
+  s.version       = '1.0.3'
   s.summary       = 'A bank for the money gem that determines exchange rates '\
     'for any desired date.'
   s.description   = 'This gem supports money conversions with '\
